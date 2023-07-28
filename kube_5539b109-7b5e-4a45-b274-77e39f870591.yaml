@@ -42,7 +42,7 @@ status: {}
 
 ---
 
-# Autoscaler for replica set github.com/ServiceWeaver/weaver/Main
+# Autoscaler for replica set github.com/ServiceWeaver/weaver/Mainnnn
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
