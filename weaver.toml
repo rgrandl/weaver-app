@@ -1,5 +1,5 @@
 [serviceweaver]
-binary = "./weaver-pipeline"
+binary = "./weaver-app"
 
 [single]
 listeners.reverser = {address = "localhost:9000"}
@@ -10,4 +10,4 @@ listeners.reverser = {address = "localhost:9000"}
 [kube]
 listeners.reverser = {public = true}
 # To upload the image to another registry, check `weaver kube deploy -h`.
-image = "docker.io/rgrandl27/weaver-pipeline"
+image = "docker.io/rgrandl27/weaver-app"
