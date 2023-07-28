@@ -3,7 +3,7 @@
 pipeline {
     agent any
 
-    tools { go 'Weaver app' }
+    tools { go 'Go pipeline' }
 
     stages {
         stage('Clean old stuff') {
