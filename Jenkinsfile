@@ -22,8 +22,5 @@ pipeline {
             sh 'weaver-kube deploy weaver.toml'
           }
         }
-
-
-        }
     }
 }
