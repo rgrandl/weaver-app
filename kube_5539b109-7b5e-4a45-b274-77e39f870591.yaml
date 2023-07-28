@@ -27,7 +27,7 @@ spec:
         env:
         - name: SERVICEWEAVER_DEPLOYMENT_CONFIG
           value: CvgCCiQ1NTM5YjEwOS03YjVlLTRhNDUtYjI3NC03N2UzOWY4NzA1OTESzwIKCndlYXZlci1hcHASEi93ZWF2ZXIvd2VhdmVyLWFwcDpLCgVtdWx0aRJCW2xpc3RlbmVyc10KICBbbGlzdGVuZXJzLnJldmVyc2VyXQogICAgYWRkcmVzcyA9ICJsb2NhbGhvc3Q6OTAwMCIKOmcKBGt1YmUSX2ltYWdlID0gImRvY2tlci5pby9yZ3JhbmRsMjcvd2VhdmVyLWFwcCIKCltsaXN0ZW5lcnNdCiAgW2xpc3RlbmVycy5yZXZlcnNlcl0KICAgIHB1YmxpYyA9IHRydWUKOikKDXNlcnZpY2V3ZWF2ZXISGGJpbmFyeSA9ICIuL3dlYXZlci1hcHAiCjpMCgZzaW5nbGUSQltsaXN0ZW5lcnNdCiAgW2xpc3RlbmVycy5yZXZlcnNlcl0KICAgIGFkZHJlc3MgPSAibG9jYWxob3N0OjkwMDAiChIkZ2l0aHViLmNvbS9TZXJ2aWNlV2VhdmVyL3dlYXZlci9NYWluGjoKJGdpdGh1Yi5jb20vU2VydmljZVdlYXZlci93ZWF2ZXIvTWFpbhISChAKCHJldmVyc2VyEKCcARgBIJBO
-        image: docker.io/rgrandl27/weaver-app:5539b109
+        image: docker.io/rgrandl27/weaver-app:22060b2f
         imagePullPolicy: IfNotPresent
         name: serviceweaver
         ports:
@@ -138,7 +138,7 @@ spec:
         env:
         - name: SERVICEWEAVER_DEPLOYMENT_CONFIG
           value: CvgCCiQ1NTM5YjEwOS03YjVlLTRhNDUtYjI3NC03N2UzOWY4NzA1OTESzwIKCndlYXZlci1hcHASEi93ZWF2ZXIvd2VhdmVyLWFwcDpnCgRrdWJlEl9pbWFnZSA9ICJkb2NrZXIuaW8vcmdyYW5kbDI3L3dlYXZlci1hcHAiCgpbbGlzdGVuZXJzXQogIFtsaXN0ZW5lcnMucmV2ZXJzZXJdCiAgICBwdWJsaWMgPSB0cnVlCjopCg1zZXJ2aWNld2VhdmVyEhhiaW5hcnkgPSAiLi93ZWF2ZXItYXBwIgo6TAoGc2luZ2xlEkJbbGlzdGVuZXJzXQogIFtsaXN0ZW5lcnMucmV2ZXJzZXJdCiAgICBhZGRyZXNzID0gImxvY2FsaG9zdDo5MDAwIgo6SwoFbXVsdGkSQltsaXN0ZW5lcnNdCiAgW2xpc3RlbmVycy5yZXZlcnNlcl0KICAgIGFkZHJlc3MgPSAibG9jYWxob3N0OjkwMDAiChImZ2l0aHViLmNvbS9yZ3JhbmRsL3dlYXZlci1hcHAvUmV2ZXJzZXIaKgomZ2l0aHViLmNvbS9yZ3JhbmRsL3dlYXZlci1hcHAvUmV2ZXJzZXISACCRTg==
-        image: docker.io/rgrandl27/weaver-app:5539b109
+        image: docker.io/rgrandl27/weaver-app:22060b2f
         imagePullPolicy: IfNotPresent
         name: serviceweaver
         ports:
