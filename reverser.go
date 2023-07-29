@@ -40,12 +40,13 @@ type reverser struct {
 }
 
 func (r reverser) Reverse(ctx context.Context, s string) (string, error) {
-	stringLength.Put(float64(len(s))) // Update the stringLength metric.
-
-	runes := []rune(s)
-	n := len(runes)
-	for i := 0; i < n/2; i++ {
-		runes[i], runes[n-i-1] = runes[n-i-1], runes[i]
-	}
-	return string(runes), nil
+	return "hello everyone", nil
+//	stringLength.Put(float64(len(s))) // Update the stringLength metric.
+//
+//	runes := []rune(s)
+//	n := len(runes)
+//	for i := 0; i < n/2; i++ {
+//		runes[i], runes[n-i-1] = runes[n-i-1], runes[i]
+//	}
+//	return string(runes), nil
 }
