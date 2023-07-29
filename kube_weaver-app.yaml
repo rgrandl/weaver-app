@@ -1378,3 +1378,348 @@ status:
   loadBalancer: {}
 
 ---
+# Deployment for replica set github.com/ServiceWeaver/weaver/Main
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  name: weaver-app-github-com-serviceweaver-weaver-main-96e3b05f
+spec:
+  minReadySeconds: 5
+  revisionHistoryLimit: 1
+  selector:
+    matchLabels:
+      globalName: weaver-app-github-com-serviceweaver-weaver-main-96e3b05f
+  strategy:
+    rollingUpdate: {}
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        depName: weaver-app-thub-com-serviceweaver-weaver-main-a738ca26-8dc76362
+        globalName: weaver-app-github-com-serviceweaver-weaver-main-96e3b05f
+        metrics: weaver-app
+    spec:
+      containers:
+      - args:
+        - babysitter
+        env:
+        - name: SERVICEWEAVER_DEPLOYMENT_CONFIG
+          value: CvgCCiRhNzM4Y2EyNi02Y2YyLTQxMDgtOTI2OS05MTI0NTc3MjFmMGMSzwIKCndlYXZlci1hcHASEi93ZWF2ZXIvd2VhdmVyLWFwcDopCg1zZXJ2aWNld2VhdmVyEhhiaW5hcnkgPSAiLi93ZWF2ZXItYXBwIgo6TAoGc2luZ2xlEkJbbGlzdGVuZXJzXQogIFtsaXN0ZW5lcnMucmV2ZXJzZXJdCiAgICBhZGRyZXNzID0gImxvY2FsaG9zdDo5MDAwIgo6SwoFbXVsdGkSQltsaXN0ZW5lcnNdCiAgW2xpc3RlbmVycy5yZXZlcnNlcl0KICAgIGFkZHJlc3MgPSAibG9jYWxob3N0OjkwMDAiCjpnCgRrdWJlEl9pbWFnZSA9ICJkb2NrZXIuaW8vcmdyYW5kbDI3L3dlYXZlci1hcHAiCgpbbGlzdGVuZXJzXQogIFtsaXN0ZW5lcnMucmV2ZXJzZXJdCiAgICBwdWJsaWMgPSB0cnVlChIkZ2l0aHViLmNvbS9TZXJ2aWNlV2VhdmVyL3dlYXZlci9NYWluGjoKJGdpdGh1Yi5jb20vU2VydmljZVdlYXZlci93ZWF2ZXIvTWFpbhISChAKCHJldmVyc2VyEKCcARgBIJBO
+        image: docker.io/rgrandl27/weaver-app:a738ca26
+        imagePullPolicy: IfNotPresent
+        name: serviceweaver
+        ports:
+        - containerPort: 9090
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+        stdin: true
+        tty: true
+status: {}
+
+---
+
+# Autoscaler for replica set github.com/ServiceWeaver/weaver/Main
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  creationTimestamp: null
+  name: weaver-app-hpa-serviceweaver-weaver-main-a738ca26-04313fba
+spec:
+  maxReplicas: 10
+  metrics:
+  - resource:
+      name: cpu
+      target:
+        averageUtilization: 80
+        type: Utilization
+    type: Resource
+  minReplicas: 1
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: weaver-app-github-com-serviceweaver-weaver-main-96e3b05f
+status:
+  currentMetrics: null
+  desiredReplicas: 0
+
+---
+
+# Service for replica set github.com/ServiceWeaver/weaver/Main
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  name: weaver-app-thub-com-serviceweaver-weaver-main-a738ca26-8dc76362
+spec:
+  ports:
+  - name: service-port
+    port: 80
+    protocol: TCP
+    targetPort: 10000
+  - name: metrics-port
+    port: 9090
+    protocol: TCP
+    targetPort: 9090
+  selector:
+    depName: weaver-app-thub-com-serviceweaver-weaver-main-a738ca26-8dc76362
+status:
+  loadBalancer: {}
+
+---
+
+# Listener Service for replica set github.com/ServiceWeaver/weaver/Main
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  name: weaver-app-lis-reverser-e51ae9ac
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 20000
+  selector:
+    globalName: weaver-app-github-com-serviceweaver-weaver-main-96e3b05f
+  type: LoadBalancer
+status:
+  loadBalancer: {}
+
+---
+
+# Deployment for replica set github.com/rgrandl/weaver-app/Reverser
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  name: weaver-app-ub-com-rgrandl-weaver-app-reverser-a738ca26-f4c9aa1f
+spec:
+  minReadySeconds: 5
+  revisionHistoryLimit: 1
+  selector:
+    matchLabels:
+      depName: weaver-app-ub-com-rgrandl-weaver-app-reverser-a738ca26-f4c9aa1f
+  strategy:
+    rollingUpdate: {}
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        depName: weaver-app-ub-com-rgrandl-weaver-app-reverser-a738ca26-f4c9aa1f
+        metrics: weaver-app
+    spec:
+      containers:
+      - args:
+        - babysitter
+        env:
+        - name: SERVICEWEAVER_DEPLOYMENT_CONFIG
+          value: CvgCCiRhNzM4Y2EyNi02Y2YyLTQxMDgtOTI2OS05MTI0NTc3MjFmMGMSzwIKCndlYXZlci1hcHASEi93ZWF2ZXIvd2VhdmVyLWFwcDopCg1zZXJ2aWNld2VhdmVyEhhiaW5hcnkgPSAiLi93ZWF2ZXItYXBwIgo6TAoGc2luZ2xlEkJbbGlzdGVuZXJzXQogIFtsaXN0ZW5lcnMucmV2ZXJzZXJdCiAgICBhZGRyZXNzID0gImxvY2FsaG9zdDo5MDAwIgo6SwoFbXVsdGkSQltsaXN0ZW5lcnNdCiAgW2xpc3RlbmVycy5yZXZlcnNlcl0KICAgIGFkZHJlc3MgPSAibG9jYWxob3N0OjkwMDAiCjpnCgRrdWJlEl9pbWFnZSA9ICJkb2NrZXIuaW8vcmdyYW5kbDI3L3dlYXZlci1hcHAiCgpbbGlzdGVuZXJzXQogIFtsaXN0ZW5lcnMucmV2ZXJzZXJdCiAgICBwdWJsaWMgPSB0cnVlChImZ2l0aHViLmNvbS9yZ3JhbmRsL3dlYXZlci1hcHAvUmV2ZXJzZXIaKgomZ2l0aHViLmNvbS9yZ3JhbmRsL3dlYXZlci1hcHAvUmV2ZXJzZXISACCRTg==
+        image: docker.io/rgrandl27/weaver-app:a738ca26
+        imagePullPolicy: IfNotPresent
+        name: serviceweaver
+        ports:
+        - containerPort: 9090
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+        stdin: true
+        tty: true
+status: {}
+
+---
+
+# Autoscaler for replica set github.com/rgrandl/weaver-app/Reverser
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  creationTimestamp: null
+  name: weaver-app-hpa-grandl-weaver-app-reverser-a738ca26-66879b32
+spec:
+  maxReplicas: 10
+  metrics:
+  - resource:
+      name: cpu
+      target:
+        averageUtilization: 80
+        type: Utilization
+    type: Resource
+  minReplicas: 1
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: weaver-app-ub-com-rgrandl-weaver-app-reverser-a738ca26-f4c9aa1f
+status:
+  currentMetrics: null
+  desiredReplicas: 0
+
+---
+
+# Service for replica set github.com/rgrandl/weaver-app/Reverser
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  name: weaver-app-ub-com-rgrandl-weaver-app-reverser-a738ca26-f4c9aa1f
+spec:
+  ports:
+  - name: service-port
+    port: 80
+    protocol: TCP
+    targetPort: 10001
+  - name: metrics-port
+    port: 9090
+    protocol: TCP
+    targetPort: 9090
+  selector:
+    depName: weaver-app-ub-com-rgrandl-weaver-app-reverser-a738ca26-f4c9aa1f
+status:
+  loadBalancer: {}
+
+---
+
+# Jaeger Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  name: weaver-app-jaeger-74305b8a
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      jaeger: weaver-app-jaeger-74305b8a
+  strategy:
+    rollingUpdate: {}
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        jaeger: weaver-app-jaeger-74305b8a
+    spec:
+      containers:
+      - image: jaegertracing/all-in-one:latest
+        imagePullPolicy: IfNotPresent
+        name: weaver-app-jaeger-74305b8a
+        resources: {}
+status: {}
+
+---
+
+# Jaeger Service
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  name: weaver-app-jaeger-74305b8a
+spec:
+  ports:
+  - name: ui-port
+    port: 16686
+    protocol: TCP
+    targetPort: 16686
+  - name: collector-port
+    port: 14268
+    protocol: TCP
+    targetPort: 14268
+  selector:
+    jaeger: weaver-app-jaeger-74305b8a
+status:
+  loadBalancer: {}
+
+---
+
+# Config Map weaver-app-prometheus-config-fd2a11ae
+apiVersion: v1
+data:
+  prometheus.yaml: |2
+
+    global:
+      scrape_interval: 15s
+    scrape_configs:
+      - job_name: "weaver-app-prometheus-c1d12a8f"
+        metrics_path: /metrics
+        kubernetes_sd_configs:
+          - role: pod
+        scheme: http
+        relabel_configs:
+          - source_labels: [__meta_kubernetes_pod_label_metrics]
+            regex: "weaver-app"
+            action: keep
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: weaver-app-prometheus-config-fd2a11ae
+
+---
+
+# Prometheus Deployment weaver-app-prometheus-c1d12a8f
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  name: weaver-app-prometheus-c1d12a8f
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      prometheus: weaver-app-prometheus-c1d12a8f
+  strategy:
+    rollingUpdate: {}
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        prometheus: weaver-app-prometheus-c1d12a8f
+    spec:
+      containers:
+      - args:
+        - --config.file=/etc/weaver-app-prometheus-c1d12a8f/prometheus.yml
+        - --storage.tsdb.path=/weaver-app-prometheus-c1d12a8f
+        image: prom/prometheus:v2.30.3
+        imagePullPolicy: IfNotPresent
+        name: weaver-app-prometheus-c1d12a8f
+        ports:
+        - containerPort: 9090
+        resources: {}
+        volumeMounts:
+        - mountPath: /etc/weaver-app-prometheus-c1d12a8f/prometheus.yml
+          name: weaver-app-prometheus-config-fd2a11ae
+          subPath: prometheus.yaml
+        - mountPath: /weaver-app-prometheus-c1d12a8f
+          name: weaver-app-prometheus-c1d12a8f-data
+      volumes:
+      - configMap:
+          items:
+          - key: prometheus.yaml
+            path: prometheus.yaml
+          name: weaver-app-prometheus-config-fd2a11ae
+        name: weaver-app-prometheus-config-fd2a11ae
+      - name: weaver-app-prometheus-c1d12a8f-data
+status: {}
+
+---
+
+# Prometheus Service weaver-app-prometheus-c1d12a8f
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  name: weaver-app-prometheus-c1d12a8f
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 9090
+  selector:
+    prometheus: weaver-app-prometheus-c1d12a8f
+status:
+  loadBalancer: {}
+
+---
